@@ -33,12 +33,12 @@ resource "aws_security_group_rule" "web_in_https" {
 }
 
 resource "aws_security_group_rule" "web_out_tcp_3000" {
-  security_group_id = aws_security_group.web_sg.id
-  type              = "egress"
-  protocol          = "tcp"
-  from_port         = 3000
-  to_port           = 3000
-  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id        = aws_security_group.web_sg.id
+  type                     = "egress"
+  protocol                 = "tcp"
+  from_port                = 3000
+  to_port                  = 3000
+  source_security_group_id = aws_security_group.app_sg.id
 }
 
 # Application Security Group
