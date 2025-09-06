@@ -53,3 +53,52 @@ resource "aws_security_group" "app_sg" {
     Env     = var.env
   }
 }
+
+# Operation Security Group
+resource "aws_security_group" "operation_sg" {
+  name        = "${var.project}-${var.env}-operation-sg"
+  description = "Operation and Management security group"
+  vpc_id      = aws_vpc.vpc.id
+
+  tags = {
+    Name    = "${var.project}-${var.env}-operation-sg"
+    Project = var.project
+    Env     = var.env
+  }
+}
+
+resource "aws_security_group_rule" "operation_in_ssh" {
+  security_group_id = aws_security_group.operation_sg.id
+  type              = "ingress"
+  protocol          = "tcp"
+  from_port         = 22
+  to_port           = 22
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "operation_in_tcp_3000" {
+  security_group_id = aws_security_group.operation_sg.id
+  type              = "ingress"
+  protocol          = "tcp"
+  from_port         = 3000
+  to_port           = 3000
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "operation_out_http" {
+  security_group_id = aws_security_group.operation_sg.id
+  type              = "egress"
+  protocol          = "tcp"
+  from_port         = 80
+  to_port           = 80
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "operation_out_https" {
+  security_group_id = aws_security_group.operation_sg.id
+  type              = "egress"
+  protocol          = "tcp"
+  from_port         = 443
+  to_port           = 443
+  cidr_blocks       = ["0.0.0.0/0"]
+}
