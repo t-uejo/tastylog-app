@@ -4,7 +4,7 @@
 # Web Security Group
 resource "aws_security_group" "web_sg" {
   name        = "${var.project}-${var.env}-web-sg"
-  description = "Web front role security group"
+  description = "Web server security group"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
@@ -39,4 +39,17 @@ resource "aws_security_group_rule" "web_out_tcp_3000" {
   from_port         = 3000
   to_port           = 3000
   cidr_blocks       = ["0.0.0.0/0"]
+}
+
+# Application Security Group
+resource "aws_security_group" "app_sg" {
+  name        = "${var.project}-${var.env}-app-sg"
+  description = "Application server security group"
+  vpc_id      = aws_vpc.vpc.id
+
+  tags = {
+    Name    = "${var.project}-${var.env}-app-sg"
+    Project = var.project
+    Env     = var.env
+  }
 }
