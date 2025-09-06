@@ -102,3 +102,25 @@ resource "aws_security_group_rule" "operation_out_https" {
   to_port           = 443
   cidr_blocks       = ["0.0.0.0/0"]
 }
+
+# Database Security Group
+resource "aws_security_group" "db_sg" {
+  name        = "${var.project}-${var.env}-db-sg"
+  description = "Database server security group"
+  vpc_id      = aws_vpc.vpc.id
+
+  tags = {
+    Name    = "${var.project}-${var.env}-db-sg"
+    Project = var.project
+    Env     = var.env
+  }
+}
+
+resource "aws_security_group_rule" "db_in_tcp_3306" {
+  security_group_id        = aws_security_group.db_sg.id
+  type                     = "ingress"
+  protocol                 = "tcp"
+  from_port                = 3306
+  to_port                  = 3306
+  source_security_group_id = aws_security_group.app_sg.id
+}
