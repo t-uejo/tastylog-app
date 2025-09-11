@@ -1,0 +1,9 @@
+---
+alwaysApply: true
+---
+
+検索時は内容に従って、以下のMCPの利用を検討してください。
+- AWSリソースに関する質問の場合、`aws-knowledge-mcp-server`を利用してください。
+- Terraformに関する質問の場合、`awslabs.terraform-mcp-server`を利用してください。
+
+また、参考文献をつけてください。
