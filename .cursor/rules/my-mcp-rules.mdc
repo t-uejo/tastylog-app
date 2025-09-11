@@ -4,6 +4,7 @@ alwaysApply: true
 
 検索時は内容に従って、以下のMCP Serverを利用し、ファクトチェックを行ってください。
 - AWSリソースに関する質問の場合、`aws-knowledge-mcp-server`を利用してください。
-- Terraformに関する質問の場合、`awslabs.terraform-mcp-server`を利用してください。
+- TerraformのAWSプロバイダーに関する質問の場合、`awslabs.terraform-mcp-server`を利用してください。
+- Terraform HCL、及びコマンドに関する質問の場合、`hashicorp/terraform-mcp-server`を利用してください。
 
 また、参考文献をつけてください。
