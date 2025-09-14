@@ -9,13 +9,22 @@ terraform {
       version = "~> 6.0"
     }
   }
+
+  backend "s3" {
+    bucket       = "tastylog-tfstate-bucket-uejo"
+    key          = "tastylog-dev.tfstate"
+    region       = "ap-northeast-1"
+    profile      = "terraform"
+    use_lockfile = true
+  }
 }
 
 # ---------------------------
 # Provider
 # ---------------------------
 provider "aws" {
-  region = "ap-northeast-1"
+  profile = "terraform"
+  region  = "ap-northeast-1"
 }
 
 # ---------------------------
