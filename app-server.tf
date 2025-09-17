@@ -22,6 +22,7 @@ resource "aws_instance" "app_server" {
   subnet_id                   = aws_subnet.public_subnet_1a.id
   associate_public_ip_address = true
   key_name                    = aws_key_pair.keypair.key_name
+  iam_instance_profile        = aws_iam_instance_profile.app_ec2_profile.name
   vpc_security_group_ids = [
     aws_security_group.app_sg.id,
     aws_security_group.operation_sg.id
