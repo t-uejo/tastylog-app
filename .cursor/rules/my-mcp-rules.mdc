@@ -1,7 +1,6 @@
 ---
-alwaysApply: true
+alwaysApply: false
 ---
-
 検索時は以下のMCP Serverを利用し、公式ドキュメントでファクトチェックを行ってください。
 - AWSリソースに関する質問：`aws-knowledge-mcp-server`
 - TerraformのAWSプロバイダーに関する質問：`awslabs.terraform-mcp-server`
